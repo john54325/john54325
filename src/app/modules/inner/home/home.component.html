@@ -1,0 +1,168 @@
+<form [formGroup]="filterForm" (ngSubmit)="filterStudents()">
+  <div class="row mb-5 p-5">
+    <div class="col-md-3">
+      <label for="dropdown1">Section:</label>
+      <select
+        formControlName="selectedSection"
+        class="form-select"
+        id="dropdown1"
+        (change)="onChangeSection()"
+      >
+        <option value="">Choose Section</option>
+        <option *ngFor="let option of sectionList" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="dropdown2">Year:</label>
+      <select
+        formControlName="selectedYear"
+        class="form-select"
+        id="dropdown2"
+        (change)="onChangeYear()"
+      >
+        <option value="">Choose Year</option>
+        <option *ngFor="let option of yearOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label for="dropdown3">Class:</label>
+      <select
+        formControlName="selectedClass"
+        class="form-select"
+        id="dropdown3"
+      >
+        <option value="">Choose Class</option>
+        <option
+          *ngFor="let option of filteredClassList?.class"
+          [value]="option"
+        >
+          {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3 mt-3">
+      <button class="btn btn-primary mr-5" (click)="filterStudents()">
+        Filter
+      </button>
+      <button class="btn btn-secondary" (click)="resetFilter()">Reset</button>
+      <button class="btn btn-primary float-end" (click)="onClickAddStudent()">
+        Add Student
+      </button>
+    </div>
+  </div>
+</form>
+
+<form [formGroup]="editStudentForm">
+  <div class="row p-3">
+    <div class="col-lg-12">
+      <div class="card" id="ViewsList">
+        <div class="card-body">
+          <div>
+            <div class="table-responsive table-card">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Sl.No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let student of filteredStudents; let i = index">
+                    <td>
+                      {{ i + 1 }}
+                    </td>
+
+                    <td>
+                      <ng-container *ngIf="selectedIndex === i">
+                        <input
+                          type="text"
+                          formControlName="name"
+                          class="form-control"
+                      /></ng-container>
+                      <ng-container *ngIf="selectedIndex !== i">{{
+                        student.name
+                      }}</ng-container>
+                    </td>
+                    <td>
+                      <ng-container *ngIf="selectedIndex === i">
+                        <input
+                          type="text"
+                          formControlName="section"
+                          class="form-control"
+                      /></ng-container>
+                      <ng-container *ngIf="selectedIndex !== i">{{
+                        student.section
+                      }}</ng-container>
+                    </td>
+                    <td>
+                      <ng-container *ngIf="selectedIndex === i">
+                        <input
+                          type="text"
+                          formControlName="class"
+                          class="form-control"
+                      /></ng-container>
+                      <ng-container *ngIf="selectedIndex !== i">{{
+                        student.class
+                      }}</ng-container>
+                    </td>
+                    <td>
+                      <ng-container *ngIf="selectedIndex === i">
+                        <input
+                          type="text"
+                          formControlName="year"
+                          class="form-control"
+                      /></ng-container>
+                      <ng-container *ngIf="selectedIndex !== i">{{
+                        student.year
+                      }}</ng-container>
+                    </td>
+
+                    <td class="action-width">
+                      <button
+                        class="btn btn-primary mr-5"
+                        *ngIf="selectedIndex !== i"
+                        (click)="onClickEdit(i)"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-primary mr-5"
+                        *ngIf="selectedIndex === i"
+                        (click)="onClickSave()"
+                      >
+                        Save
+                      </button>
+                      <button
+                        class="btn btn-info mr-5"
+                        (click)="onClickView(student.id)"
+                      >
+                        View
+                      </button>
+                      <button
+                        class="btn btn-danger"
+                        (click)="onClickDelete(student.id)"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- Default Modals -->

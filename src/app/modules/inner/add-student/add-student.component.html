@@ -1,0 +1,91 @@
+<h2 mat-dialog-title>Add Student</h2>
+<form [formGroup]="addStudentFG" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="mat-typography">
+    <div class="row p-5">
+      <div class="col-md-3">
+        <label for="dropdown1">Name:</label>
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="exampleFormControlTextarea1">Address</label>
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          formControlName="address"
+        ></textarea>
+      </div>
+
+      <div class="col-md-3">
+        <label for="dropdown2">Section:</label>
+        <select
+          formControlName="section"
+          class="form-select"
+          id="dropdown2"
+          (change)="onChangeSection()"
+        >
+          <option *ngFor="let section of sectionList" [value]="section">
+            {{ section }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="dropdown2">Class:</label>
+        <select formControlName="class" class="form-select" id="dropdown2">
+          <option *ngFor="let item of filteredClassList?.class" [value]="item">
+            {{ item }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="dropdown2">Year:</label>
+        <select formControlName="year" class="form-select" id="dropdown2">
+          <option *ngFor="let option of yearOptions" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="dropdown1">Grade for subject 1:</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="gradeForSubject1"
+        />
+      </div>
+      <div class="col-md-3">
+        <label for="dropdown1">Grade for subject 2:</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="gradeForSubject2"
+        />
+      </div>
+      <div class="col-md-3">
+        <label for="dropdown1">Grade for subject 3:</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="gradeForSubject3"
+        />
+      </div>
+
+      <!-- <div class="col-md-3 mt-3">
+      <button class="btn btn-primary">Submit</button>
+      <button class="btn btn-primary float-end" (click)="onClickAddStudent()">
+        Add Student
+      </button>
+    </div> -->
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <!-- <button mat-button mat-dialog-close>Cancel</button> -->
+    <button type="button" class="btn btn-secondary mr-5" mat-dialog-close>
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary">Add Student</button>
+  </mat-dialog-actions>
+</form>

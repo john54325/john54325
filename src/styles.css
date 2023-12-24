@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+.error-message {
+  color: rgb(245, 4, 4);
+  margin-top: 10px;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.action-width {
+  width: 250px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.profile-picture {
+  width: 150px; /* Set the desired width */
+  height: 150px; /* Set the desired height */
+  object-fit: cover;
+  border-radius: 50%; /* Make it a circular shape */
+  margin: 0 auto; /* Center horizontally */
+  display: block; /* Center vertically */
+}
